@@ -1,0 +1,593 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --chronos-ink: #11100e;
+  --chronos-surface: #191714;
+  --chronos-raised: #211e19;
+  --chronos-gold: #c9a96e;
+  --chronos-gold-soft: #e3d0a7;
+  --chronos-paper: #eee8dc;
+  --chronos-muted: #a7a093;
+  --chronos-line: rgb(238 232 220 / 12%);
+  --font-display: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+@theme inline {
+  --color-chronos-ink: var(--chronos-ink);
+  --color-chronos-surface: var(--chronos-surface);
+  --color-chronos-raised: var(--chronos-raised);
+  --color-chronos-gold: var(--chronos-gold);
+  --color-chronos-gold-soft: var(--chronos-gold-soft);
+  --color-chronos-paper: var(--chronos-paper);
+  --color-chronos-muted: var(--chronos-muted);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--chronos-ink);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--chronos-ink);
+  color: var(--chronos-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--chronos-gold);
+  color: var(--chronos-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--chronos-gold-soft);
+  outline-offset: 4px;
+}
+
+.chronos-atmosphere {
+  background:
+    radial-gradient(ellipse at 70% 8%, rgb(139 104 54 / 15%), transparent 36rem),
+    radial-gradient(ellipse at 12% 84%, rgb(110 79 42 / 9%), transparent 32rem),
+    linear-gradient(135deg, rgb(255 255 255 / 1.8%), transparent 42%);
+}
+
+.chronos-grid {
+  background-image:
+    linear-gradient(rgb(238 232 220 / 2.4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(238 232 220 / 2.4%) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+
+.chronos-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--chronos-gold), rgb(201 169 110 / 10%));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.film-grain {
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+.intro-section {
+  background:
+    radial-gradient(ellipse at 50% 49%, rgb(135 98 50 / 12%), transparent 34rem),
+    var(--chronos-ink);
+}
+
+.portal-core {
+  transform: translateZ(-45px);
+  background:
+    radial-gradient(circle at 50% 50%, rgb(242 211 151 / 20%) 0, rgb(174 123 61 / 9%) 34%, transparent 71%),
+    radial-gradient(circle at 50% 50%, transparent 50%, rgb(221 185 123 / 18%) 54%, transparent 63%);
+  box-shadow:
+    0 0 55px rgb(204 157 89 / 18%),
+    inset 0 0 45px rgb(205 157 88 / 16%);
+}
+
+.portal-parallax {
+  perspective: 1100px;
+  transform-style: preserve-3d;
+}
+
+.portal-ring-outer {
+  transform: rotateY(-12deg) rotateX(7deg);
+}
+
+.portal-ring {
+  border: 1px solid rgb(222 190 135 / 52%);
+  box-shadow:
+    0 0 22px rgb(205 157 88 / 20%),
+    inset 0 0 20px rgb(205 157 88 / 10%);
+}
+
+.portal-ring-outer {
+  border-color: rgb(222 190 135 / 24%);
+  transform: rotate(12deg) scaleX(0.82);
+}
+
+.portal-ring-inner {
+  border-color: rgb(233 209 164 / 31%);
+  box-shadow: 0 0 42px rgb(218 181 118 / 18%);
+}
+
+.portal-coordinate {
+  color: rgb(224 205 167 / 58%);
+}
+
+.portal-particle {
+  fill: var(--chronos-gold-soft);
+  filter: drop-shadow(0 0 5px var(--chronos-gold));
+}
+
+.century-hero {
+  background: var(--era-deep);
+}
+
+.hero-vignette {
+  background-color: rgb(0 0 0 / 18%);
+}
+
+.hero-copy {
+  width: fit-content;
+  max-width: min(100%, 56rem);
+  border-left: 2px solid var(--era-accent);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background-color: rgb(8 8 7 / 62%);
+  backdrop-filter: blur(8px);
+}
+
+.century-hero-image {
+  filter: brightness(0.94) contrast(1.02);
+  will-change: transform, clip-path;
+}
+
+.era-marker {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--era-accent), transparent 25%);
+}
+
+.century-details {
+  background-color: var(--era-deep);
+}
+
+.century-details .detail-card {
+  background-color: var(--era-surface);
+}
+
+.gallery-caption-shade {
+  background-color: rgb(0 0 0 / 58%);
+}
+
+.century-details .text-chronos-gold {
+  color: var(--era-accent);
+}
+
+.century-details .text-chronos-gold-soft {
+  color: color-mix(in srgb, var(--era-accent) 72%, white);
+}
+
+.century-details .border-chronos-gold\/60,
+.century-details .border-chronos-gold\/50 {
+  border-color: color-mix(in srgb, var(--era-accent) 55%, transparent);
+}
+
+.journey-end {
+  background:
+    radial-gradient(ellipse at 50% 42%, rgb(151 112 57 / 14%), transparent 38rem),
+    #11100e;
+}
+
+.completion-mark {
+  box-shadow:
+    0 0 48px rgb(201 169 110 / 12%),
+    inset 0 0 28px rgb(201 169 110 / 8%);
+}
+
+.century-selector-panel {
+  scrollbar-color: rgb(201 169 110 / 45%) transparent;
+  scrollbar-width: thin;
+}
+
+.century-option {
+  transform-origin: top center;
+}
+
+.timeline-chrome {
+  background-color: rgb(12 12 13 / 94%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.chronos-wordmark {
+  color: var(--chronos-paper);
+}
+
+.chronos-emblem {
+  transition:
+    color 250ms ease,
+    transform 500ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.chronos-wordmark-name {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.23em;
+  line-height: 1;
+}
+
+.chronos-wordmark-type {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.chronos-wordmark-caption {
+  color: var(--chronos-muted);
+  font-size: 0.43rem;
+  letter-spacing: 0.17em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.timeline-brand {
+  border: 0;
+  background: transparent;
+  padding: 0.3rem 0;
+}
+
+.timeline-brand:hover .chronos-emblem {
+  color: var(--era-accent, var(--chronos-gold-soft));
+  transform: rotate(-12deg);
+}
+
+.timeline-controls {
+  justify-self: center;
+}
+
+.timeline-arrow {
+  display: grid;
+  width: 2.45rem;
+  height: 2.45rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgb(238 232 220 / 13%);
+  background-color: rgb(255 255 255 / 3%);
+  color: rgb(238 232 220 / 68%);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.timeline-arrow:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--era-accent, var(--chronos-gold)) 65%, transparent);
+  background-color: color-mix(in srgb, var(--era-accent, var(--chronos-gold)) 9%, transparent);
+  color: var(--chronos-paper);
+}
+
+.timeline-arrow:disabled {
+  color: rgb(238 232 220 / 25%);
+}
+
+.timeline-chapter-picker {
+  display: flex;
+  width: clamp(12rem, 27vw, 21rem);
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 1px solid rgb(238 232 220 / 16%);
+  background-color: rgb(255 255 255 / 4%);
+  padding: 0.4rem 0.9rem;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.timeline-chapter-picker:hover,
+.timeline-chapter-picker[aria-expanded="true"] {
+  border-color: color-mix(in srgb, var(--era-accent, var(--chronos-gold)) 60%, transparent);
+  background-color: rgb(255 255 255 / 7%);
+}
+
+.timeline-chapter-copy {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: 0.55rem;
+  row-gap: 0.22rem;
+}
+
+.timeline-chapter-label {
+  color: var(--chronos-muted);
+  font-size: 0.48rem;
+  letter-spacing: 0.14em;
+}
+
+.timeline-chapter-range {
+  color: color-mix(in srgb, var(--era-accent, var(--chronos-gold-soft)) 74%, white);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.timeline-chapter-title {
+  display: none;
+  overflow: hidden;
+  grid-column: 1 / -1;
+  color: rgb(238 232 220 / 62%);
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-chevron {
+  flex: 0 0 auto;
+  color: var(--era-accent, var(--chronos-gold));
+  transition: transform 180ms ease;
+}
+
+.timeline-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.timeline-current-time {
+  display: grid;
+  justify-items: end;
+  gap: 0.13rem;
+  min-width: 4.2rem;
+}
+
+.timeline-current-year {
+  color: var(--chronos-paper);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.timeline-current-meta {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--era-accent, var(--chronos-gold));
+  font-size: 0.46rem;
+  letter-spacing: 0.17em;
+}
+
+.timeline-current-divider {
+  color: rgb(238 232 220 / 32%);
+}
+
+.timeline-progress {
+  background: linear-gradient(
+    90deg,
+    var(--era-accent, var(--chronos-gold)),
+    var(--era-secondary, var(--chronos-gold-soft))
+  );
+  will-change: transform;
+}
+
+.timeline-chrome .text-chronos-gold,
+.timeline-chrome .text-chronos-gold-soft {
+  color: var(--era-accent, var(--chronos-gold));
+}
+
+.timeline-chrome button:hover {
+  border-color: color-mix(in srgb, var(--era-accent, var(--chronos-gold)) 65%, transparent);
+}
+
+.timeline-brand:hover {
+  border-color: transparent;
+}
+
+@media (min-width: 1280px) {
+  .timeline-chapter-title {
+    display: block;
+  }
+}
+
+@media (max-width: 1023px) {
+  .timeline-chapter-title {
+    display: none;
+  }
+
+  .timeline-chapter-picker {
+    width: 12.5rem;
+    min-height: 2.55rem;
+  }
+
+  .timeline-arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .timeline-header-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .timeline-current-time {
+    display: none;
+  }
+
+  .timeline-controls {
+    justify-self: end;
+  }
+
+  .chronos-wordmark {
+    gap: 0.5rem;
+  }
+
+  .chronos-emblem {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .chronos-wordmark-name {
+    font-size: 0.67rem;
+    letter-spacing: 0.16em;
+  }
+
+  .chronos-wordmark-caption {
+    font-size: 0.37rem;
+    letter-spacing: 0.12em;
+  }
+
+  .timeline-controls {
+    gap: 0.35rem;
+  }
+
+  .timeline-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .timeline-chapter-picker {
+    width: 8.5rem;
+    min-height: 2.25rem;
+    gap: 0.3rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .timeline-chapter-copy {
+    display: block;
+  }
+
+  .timeline-chapter-label,
+  .timeline-current-meta {
+    display: none;
+  }
+
+  .timeline-chapter-range {
+    font-size: 0.67rem;
+  }
+
+  .timeline-current-time {
+    min-width: 2.5rem;
+  }
+
+  .timeline-current-year {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .timeline-chrome {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .chronos-wordmark {
+    gap: 0.35rem;
+  }
+
+  .chronos-emblem {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .chronos-wordmark-name {
+    font-size: 0.58rem;
+    letter-spacing: 0.11em;
+  }
+
+  .timeline-header-row {
+    gap: 0.35rem;
+  }
+
+  .timeline-chapter-picker {
+    width: 7rem;
+  }
+
+  .timeline-arrow {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .chronos-wordmark-caption {
+    display: none;
+  }
+}
+
+.time-transition {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgb(167 129 75 / 26%), transparent 58%),
+    #090806;
+}
+
+.time-glitch-band {
+  position: absolute;
+  left: -8%;
+  display: block;
+  width: 116%;
+  transform-origin: center;
+  mix-blend-mode: screen;
+}
+
+.time-glitch-band-a {
+  top: 21%;
+  height: 2px;
+  background: var(--chronos-gold-soft);
+}
+
+.time-glitch-band-b {
+  top: 39%;
+  height: 7px;
+  background: linear-gradient(90deg, transparent, rgb(201 169 110 / 72%), transparent);
+}
+
+.time-glitch-band-c {
+  top: 63%;
+  height: 1px;
+  background: #8eb6b0;
+}
+
+.time-glitch-band-d {
+  top: 82%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 5%, rgb(238 232 220 / 60%), transparent 82%);
+}
+
+@media (max-width: 640px) {
+  .hero-vignette {
+    background-color: rgb(0 0 0 / 18%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .century-hero-image,
+  .timeline-progress {
+    will-change: auto;
+  }
+}
